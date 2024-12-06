@@ -19,21 +19,16 @@ describe("SearchBox Component", () => {
             </Provider>
         );
 
-        // Locate the input and button
         const inputElement = screen.getByPlaceholderText("Enter a github username");
         const buttonElement = screen.getByRole("button", { name: /search repos/i });
 
-        // Simulate typing into the input
         fireEvent.change(inputElement, { target: { value: "test-user" } });
 
-        // Assert setSearchBoxInput is called with the correct value
         expect(mockSetSearchBoxInput).toHaveBeenCalledWith("test-user");
         expect(mockSetSearchBoxInput).toHaveBeenCalledTimes(1);
 
-        // Simulate clicking the button
         fireEvent.click(buttonElement);
 
-        // Assert setQueryInput is called with the current input value
         expect(mockSetQueryInput).toHaveBeenCalledWith("test-user");
         expect(mockSetQueryInput).toHaveBeenCalledTimes(1);
     });
